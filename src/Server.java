@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 import java.net.*;
 import java.io.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -21,8 +23,16 @@ public class Server {
 
 
         String greeting = in.readLine();
-
-        out.println("Server:"+greeting);
+        GregorianCalendar calendar = new GregorianCalendar();
+        if(greeting.equals("DATE?")){
+            out.println("Server: "+calendar.get(Calendar.DATE));
+        }
+        else if(greeting.equals("HOUR?")){
+            out.println("Server: "+calendar.get(Calendar.HOUR));
+        }
+        else if(greeting.equals("MOON?")) {
+            out.println("Server: I DON'T KNOW  ");
+        }
     }
 
     public void stop() throws IOException {
