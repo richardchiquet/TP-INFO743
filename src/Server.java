@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import java.util.Random;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -13,6 +13,12 @@ public class Server {
     private BufferedReader in;
 
     public void start(int port) throws IOException {
+        Boolean test = false;
+        Random r = new Random();
+        int result= r.nextInt(100);
+        while(test){
+
+        }
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
         out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -23,16 +29,9 @@ public class Server {
 
 
         String greeting = in.readLine();
-        GregorianCalendar calendar = new GregorianCalendar();
-        if(greeting.equals("DATE?")){
-            out.println("Server: "+calendar.get(Calendar.DATE));
-        }
-        else if(greeting.equals("HOUR?")){
-            out.println("Server: "+calendar.get(Calendar.HOUR));
-        }
-        else if(greeting.equals("MOON?")) {
-            out.println("Server: I DON'T KNOW  ");
-        }
+        if(greeting.equals(result)) test = true;
+        else if(int(greeting)<result) out.println();
+
     }
 
     public void stop() throws IOException {
